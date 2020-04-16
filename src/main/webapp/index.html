@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
+    <meta name="copyright" content="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
+    <meta name="description" content="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
+    <title>Techape博客</title>
+    <link rel="icon" href="favicon.ico">
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--引入include的js文件-->
+    <script src="js/include.js"></script>
+    <script src="js/ready.js"></script>
+    <!--引入自定义css-->
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+
+    <script>
+        // 监听滚动条
+        $(window).scroll(function() {
+            if ($(document).scrollTop() - $(document).height() < 100) {
+                // 初始化底部加载条/*可以使用下面的两个语句来实现loading动画的显示和隐藏*/
+                // $("#sk-three-bounce").show();
+                $("#sk-three-bounce").hide();
+            }else {
+            }
+        });
+    </script>
+</head>
+<body style="overflow-x:hidden">
+    <!--引入头部-->
+<!--    <div id="header"></div>-->
+
+    <header>
+        <div class="blog-masthead">
+            <div class="container">
+                <nav class="blog-nav navbar-left">
+                    <a id="index" class="blog-nav-item active" href="index.html">首页</a>
+<!--                    <a id="write" class="blog-nav-item" href="write.html">写文章</a>-->
+                </nav>
+                <nav class="navbar-right">
+                    <a id="manage" class="blog-nav-item" href="manage.html">管理登录</a>
+                </nav>
+
+                <button type="button" class="navbar-toggle navbar-right collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="blog-header">
+            <img src="img/sitelogo.jpg" class="img-responsive img-circle navbar-left center-block" alt="sitelogo" style="margin-left: -20px; margin-top: 25px; padding-right: 20px">
+            <h1 class="blog-title">Techape's Blog</h1>
+            <p style="margin-top: 20px;margin-bottom: 0; padding-bottom: 0;margin-left: 20px" class="lead blog-description">猿来如此</p>
+        </div>
+        <div class="row index">
+            <!--引入边栏-->
+            <div id="sidebar"></div>
+            <!--引入文章列表-->
+            <div id="article-list"></div>
+
+            </div><!-- /.blog-main -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-5" id="load-area">
+                <div class="sk-three-bounce" id="sk-three-bounce">
+                    <div class="sk-child sk-bounce1"></div>
+                    <div class="sk-child sk-bounce2"></div>
+                    <div class="sk-child sk-bounce3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--引入尾部-->
+    <div id="footer"></div>
+</body>
+</html>

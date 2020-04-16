@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Techape</title>
+    <link rel="icon" href="favicon.ico">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--引入include的js文件-->
+    <script src="js/include.js"></script>
+    <script src="js/ready.js"></script>
+    <!--引入自定义css-->
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/manage.css" rel="stylesheet">
+    <!--隐藏滑动条-->
+    <style>
+        ::-webkit-scrollbar {display:none}
+      td, th {
+          float: none;
+          text-align: center;
+          vertical-align: center;
+          font-size: 15px;
+      }
+    </style>
+
+    <script>
+        $(function(){
+
+            $("body").on("mousedown", "a", function (e) {
+                e.preventDefault();
+            });
+            $('.manage-main a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
+
+            $("#exit").click(function () {
+                $.post("servletExit",null,function () {
+                    location.reload();
+                })
+            })
+
+        })
+    </script>
+
+</head>
+<body style="overflow-x:hidden;">
+
+<!--头部-->
+<header>
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav navbar-left">
+                <a id="index" class="blog-nav-item" href="index.html">首页</a>
+<!--                <a id="write" class="blog-nav-item" href="write.html">写文章</a>-->
+            </nav>
+            <nav class="blog-nav navbar-right">
+                <a id="manage" class="blog-nav-item active" href="manage.html">管理登录</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+<div class="container" style="margin-bottom: 70px">
+    <div class="row">
+        <ul class="nav nav-tabs manage-main">
+            <li role="presentation" class="active" data-toggle='tab'>
+                <a href="#general">General</a>
+            </li>
+            <li role="presentation" data-toggle='tab'>
+                <a href="#profile">Profile</a>
+            </li>
+            <li role="presentation" data-toggle="tab">
+                <a href="#articles">Articles</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="general">
+            <form id="manage-general">
+                <div class="form-group">
+                    <label for="blog-manage-general-title">博客标题</label>
+                    <input type="text" class="form-control" id="blog-manage-general-title" placeholder="Techape博客">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-general-name">博客名称</label>
+                    <input type="text" class="form-control" id="blog-manage-general-name" placeholder="Techape's Blog">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-general-description">博客描述</label>
+                    <input type="text" class="form-control" id="blog-manage-general-description" placeholder="猿来如此">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-general-copyright">Html头部版权信息</label>
+                    <input type="text" class="form-control" id="blog-manage-general-copyright" placeholder="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-general-headdes">Html头部描述信息</label>
+                    <input type="text" class="form-control" id="blog-manage-general-headdes" placeholder="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-general-beian">底部备案信息</label>
+                    <input type="text" class="form-control" id="blog-manage-general-beian" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="logo">上传favicon.ico</label>
+                    <input type="file" id="logo">
+                    <p class="help-block">建议大小为 32 x 32</p>
+                </div>
+                <button type="submit" class="btn btn-success">提交修改</button>
+                <button type="button" class="btn btn-danger navbar-right" id="exit">退出登录</button>
+            </form>
+        </div>
+        <div class="tab-pane" id="profile">
+            <form id="manage-profile">
+                <div class="form-group">
+                    <label for="blog-manage-profile-selfdes">简介</label>
+                    <input type="text" class="form-control" id="blog-manage-profile-selfdes" placeholder='\"行百里者半九十\"'>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-profile-email">Email</label>
+                    <input type="text" class="form-control" id="blog-manage-profile-email" placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-profile-github">Github Link</label>
+                    <input type="text" class="form-control" id="blog-manage-profile-github" placeholder="https://github.com/Techape2018">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-profile-csdn">CSDN Link</label>
+                    <input type="text" class="form-control" id="blog-manage-profile-csdn" placeholder="https://dzzhyk.blog.csdn.net/">
+                </div>
+                <div class="form-group">
+                    <label for="headlogo">上传头像</label>
+                    <input type="file" id="headlogo">
+                    <p class="help-block">建议大小为 350 x 350</p>
+                </div>
+                <button type="submit" class="btn btn-success">提交修改</button>
+            </form>
+        </div>
+
+        <div class="tab-pane" id="articles">
+            <!--获取文章列表-->
+            <div class="container">
+                <h3 style="text-align: center">文章列表</h3>
+                <table style="text-align: center" border="2" class="table table-bordered table-hover">
+                    <!--表头-->
+                    <tr class="success">
+                        <th style="width: 80px">文章编号</th>
+                        <th style="width: 90px">创建时间</th>
+                        <th style="width: 570px">题目</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>这是一段特别长的文章题目这是一段特别长的文章题目这是</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>2020.5.1</td>
+                        <td>Cocos2d-x简介</td>
+                        <td>
+                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" align="center"><a class="btn btn-primary" href="write.html">写新文章</a></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="footer"></div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<div class="col-sm-8 col-sm-offset-1">
+    <div class="page-header article-header">
+        <h1>Example page header</h1>
+    </div>
+<!--    <h1  class="text-center">文章标题</h1>-->
+    <p id="article-time" class="text-center">2020年5月1日</p>
+    <div id="article-body"></div>
+</div>
+<script>
+    text = "## 开源跨平台游戏开发框架\n" +
+        "\n" +
+        "Cocos2d-x 是一套成熟的开源跨平台游戏开发框架。引擎提供了图形渲染、GUI、音频、网络、物理、用户输入等丰富的功能，被广泛应用于游戏开发及交互式应用的构建。其核心采用 C++ 编写，支持使用 C++、Lua 进行开发。Cocos2d-x 适配 iOS、Android、Windows 和 Mac 系统，功能侧重于原生移动平台，并向 3D 领域延伸扩展。\n" +
+        "\n" +
+        "\n" +
+        "\n" +
+        "## 引擎优势\n" +
+        "\n" +
+        "Cocos2d-x 是 MIT 许可证下发布的一款功能强大的开源游戏引擎。\n" +
+        "\n" +
+        "允许开发人员使用 C++、Javascript 及 Lua 三种语言来进行游戏开发。\n" +
+        "\n" +
+        "支持所有常见平台，包括 iOS、Android、Windows、macOS、Linux。\n" +
+        "\n" +
+        "\n" +
+        "\n" +
+        "## 引擎特性\n" +
+        "\n" +
+        "- 现代化的 C++ API\n" +
+        "- 立足于 C++ 同时支持 JavaScript/Lua 作为开发语言\n" +
+        "- 可以跨平台部署, 支持 iOS、Android、Windows、macOS 和 Linux\n" +
+        "- 可以在 PC 端完成游戏的测试，最终发布到移动端\n" +
+        "- 完善的游戏功能支持，包含精灵、动作、动画、粒子特效、场景转换、事件、文件 IO、数据持久化、骨骼动画、3D\n" +
+        "\n" +
+        "\n" +
+        "\n" +
+        "## 市场占有\n" +
+        "\n" +
+        "Cocos2d-x 用户不仅包括个人开发者和游戏开发爱好者，还包括许多知名大公司如 Zynga、Wooga、Gamevil、Glu、GREE、Konami、TinyCo、HandyGames、IGG 及 Disney Mobile 等。\n" +
+        "\n" +
+        "使用 Cocos2d-x 开发的许多游戏占据苹果应用商店和谷歌应用商店排行榜，同时许多公司如触控、谷歌、微软、ARM，英特尔及黑莓的工程师在 Cocos2d-x 领域也非常活跃。\n" +
+        "\n" +
+        "\n" +
+        "\n" +
+        "```c++\n" +
+        "#include <iostream>\n" +
+        "using namespace std;\n" +
+        "int main(){\n" +
+        "    cout << \"hello world\" << endl;\n" +
+        "}\n" +
+        "```";
+    var converter = new showdown.Converter({extensions: ['table']});
+    var html = converter.makeHtml(text);
+    $('#article-body').html(html);
+</script>
