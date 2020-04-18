@@ -11,4 +11,10 @@ public class GeneralServiceImpl implements GeneralService {
         JloggGeneralDao dao = new JloggGeneralDaoImpl();
         return dao.findGeneral();
     }
+
+    @Override
+    public boolean updateGeneral(JloggGeneral general) {
+        JloggGeneralDao dao = new JloggGeneralDaoImpl();
+        return dao.updateGeneral(general);
+    }
 }

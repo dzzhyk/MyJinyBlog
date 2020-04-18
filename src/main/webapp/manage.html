@@ -43,8 +43,17 @@
                     location.reload();
                 })
             })
-
         })
+
+        // 异步提交general表单
+        function submitGeneral() {
+            if (confirm("确定要修改General吗？")){
+                $.post("servletUpdateGeneral", $("#manage-general").serialize(), function (info) {
+                    alert(info.errorMsg);
+                });
+            }
+            return false;
+        }
     </script>
 
 </head>
@@ -84,37 +93,37 @@
 
     <div class="tab-content">
         <div class="tab-pane active" id="general">
-            <form id="manage-general">
+            <form id="manage-general" method="post">
                 <div class="form-group">
                     <label for="blog-manage-general-title">博客标题</label>
-                    <input type="text" class="form-control" id="blog-manage-general-title" placeholder="Techape博客">
+                    <input name="title" type="text" class="form-control" id="blog-manage-general-title" placeholder="Techape博客">
                 </div>
                 <div class="form-group">
                     <label for="blog-manage-general-name">博客名称</label>
-                    <input type="text" class="form-control" id="blog-manage-general-name" placeholder="Techape's Blog">
+                    <input name="name" type="text" class="form-control" id="blog-manage-general-name" placeholder="Techape's Blog">
                 </div>
                 <div class="form-group">
                     <label for="blog-manage-general-description">博客描述</label>
-                    <input type="text" class="form-control" id="blog-manage-general-description" placeholder="猿来如此">
+                    <input name="description" type="text" class="form-control" id="blog-manage-general-description" placeholder="猿来如此">
                 </div>
                 <div class="form-group">
                     <label for="blog-manage-general-copyright">Html头部版权信息</label>
-                    <input type="text" class="form-control" id="blog-manage-general-copyright" placeholder="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
+                    <input name="htmlCopyright" type="text" class="form-control" id="blog-manage-general-copyright" placeholder="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
                 </div>
                 <div class="form-group">
                     <label for="blog-manage-general-headdes">Html头部描述信息</label>
-                    <input type="text" class="form-control" id="blog-manage-general-headdes" placeholder="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
+                    <input name="htmlDescription" type="text" class="form-control" id="blog-manage-general-headdes" placeholder="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
                 </div>
                 <div class="form-group">
                     <label for="blog-manage-general-beian">底部备案信息</label>
-                    <input type="text" class="form-control" id="blog-manage-general-beian" placeholder="">
+                    <input name="beian" type="text" class="form-control" id="blog-manage-general-beian" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="logo">上传favicon.ico</label>
                     <input type="file" id="logo">
                     <p class="help-block">建议大小为 32 x 32</p>
                 </div>
-                <button type="submit" class="btn btn-success">提交修改</button>
+                <button onclick="submitGeneral()" type="button" class="btn btn-success">提交修改</button>
                 <button type="button" class="btn btn-danger navbar-right" id="exit">退出登录</button>
             </form>
         </div>

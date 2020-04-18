@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
-    <meta id="htmlCopyright" name="copyright" content="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
-    <meta id="htmlDescription" name="description" content="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
+    <meta name="copyright" content="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
+    <meta name="description" content="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
     <title>Techape博客</title>
     <link rel="icon" href="favicon.ico">
     <!-- Bootstrap -->
@@ -33,11 +33,11 @@
         // 异步获取general信息
         $(function () {
             $.get("servletFlushGeneral", null, function(data){
-                $("title").text(data.title);
+                document.title = data.title;
                 $("#name").text(data.name);
                 $("#description").text(data.description);
-                $("#htmlDescription").text(data.htmlDescription);
-                $("#htmlCopyright").text(data.htmlCopyright);
+                $("meta[name='description']").attr('content',data.htmlDescription);
+                $("meta[name='copyright']").attr('content',data.htmlCopyright);
                 $("#beian").text(data.beian);
             });
         })

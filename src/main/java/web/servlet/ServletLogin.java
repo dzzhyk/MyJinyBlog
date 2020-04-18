@@ -46,7 +46,6 @@ public class ServletLogin extends HttpServlet {
                 //将info对象序列化为json
                 response.setContentType("application/json;charset=utf-8");
                 response.getWriter().write(objectMapper.writeValueAsString(info));
-//                response.sendRedirect(request.getContextPath() + "login.html");
                 return;
             } catch (IOException e) {
                 e.printStackTrace();
