@@ -2,6 +2,8 @@ package service;
 
 import domain.JloggUser;
 
-public interface LoginService {
+public interface UserService {
     JloggUser login(JloggUser u);
+
+    boolean updateAccount(JloggUser user);
 }

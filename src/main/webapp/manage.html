@@ -63,12 +63,28 @@
             }
             return false;
         }
+        // 异步提交account表单
+        function submitAccount() {
+            if (confirm("确定要修改Account吗？")){
+                if ($("#blog-manage-account-password").val()===""){
+                    alert("Password不能为空！")
+                }else {
+                    $.post("servletUpdateAccount", $("#manage-account").serialize(), function (info) {
+                        alert(info.errorMsg);
+                    });
+                }
+            }
+            return false;
+        }
 
         // general信息回显
         function showGeneral() {
             $.post("servletShowGeneral", null, function(info){
                 $("#manage-general div input").each(function(){
                     $(this).val(info[$(this).attr("name")]);
+                })
+                $(this).click(function () {
+                    e.preventDefault();
                 })
             });
         }
@@ -77,6 +93,16 @@
             $.post("servletShowAdminProfile", null, function(info){
                 $("#manage-profile div input").each(function(){
                     $(this).val(info[$(this).attr("name")]);
+                })
+            });
+        }
+        // Account信息回显
+        function showAccount() {
+            $.post("servletShowAccount", null, function(info){
+                $("#manage-account div input").each(function(){
+                    if ($(this).attr("name")!=="passwd"){
+                        $(this).val(info[$(this).attr("name")]);
+                    }
                 })
             });
         }
@@ -109,6 +135,9 @@
             </li>
             <li role="presentation" data-toggle='tab'>
                 <a onclick="showProfile()" href="#profile">Profile</a>
+            </li>
+            <li role="presentation" data-toggle='tab'>
+                <a onclick="showAccount()" href="#account">Account</a>
             </li>
             <li role="presentation" data-toggle="tab">
                 <a href="#articles">Articles</a>
@@ -158,10 +187,6 @@
                     <input name="selfdes" type="text" class="form-control" id="blog-manage-profile-selfdes" placeholder='\"行百里者半九十\"'>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input name="passwd" type="password" class="form-control" id="password">
-                </div>
-                <div class="form-group">
                     <label for="blog-manage-profile-email">Email</label>
                     <input name="email" type="text" class="form-control" id="blog-manage-profile-email" placeholder="example@email.com">
                 </div>
@@ -173,10 +198,24 @@
                     <label for="blog-manage-profile-csdn">CSDN Link</label>
                     <input name="csdn" type="text" class="form-control" id="blog-manage-profile-csdn" placeholder="https://dzzhyk.blog.csdn.net/">
                 </div>
+                <button onclick="submitProfile()" type="button" class="btn btn-success">提交修改</button>
+            </form>
+        </div>
+
+        <div class="tab-pane" id="account">
+            <form id="manage-account" method="post">
+                <div class="form-group">
+                    <label for="blog-manage-account-username">Username</label>
+                    <input name="username" type="text" class="form-control" id="blog-manage-account-username">
+                </div>
+                <div class="form-group">
+                    <label for="blog-manage-account-password">Password</label>
+                    <input name="passwd" type="password" class="form-control" id="blog-manage-account-password">
+                </div>
                 <label for="headlogo">上传头像</label>
                 <input type="file" id="headlogo">
                 <p class="help-block">建议大小为 350 x 350</p>
-                <button onclick="submitProfile()" type="button" class="btn btn-success">提交修改</button>
+                <button onclick="submitAccount()" type="button" class="btn btn-success">提交修改</button>
             </form>
         </div>
 
@@ -308,7 +347,6 @@
                     </tr>
                 </table>
             </div>
-
         </div>
     </div>
 </div>

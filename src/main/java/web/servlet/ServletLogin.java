@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.JloggUser;
 import domain.ResultInfo;
 import org.apache.commons.beanutils.BeanUtils;
-import service.Impl.LoginServiceImpl;
-import service.LoginService;
+import service.Impl.UserServiceImpl;
+import service.UserService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +28,7 @@ public class ServletLogin extends HttpServlet {
         final String CHECKCODE_ATTR = "CHECKCODE_SERVER";
         ObjectMapper objectMapper = new ObjectMapper();
         Map map = request.getParameterMap();
-        LoginService loginService = new LoginServiceImpl();
+        UserService userService = new UserServiceImpl();
 
         // 返回信息
         ResultInfo info = new ResultInfo();
@@ -62,7 +62,7 @@ public class ServletLogin extends HttpServlet {
 
         // 调用service查询回user
         JloggUser user = null;
-        user = loginService.login(jloggUser);
+        user = userService.login(jloggUser);
         if (user==null){
             info.setFlag(false);
             info.setErrorMsg("用户名或密码错误");

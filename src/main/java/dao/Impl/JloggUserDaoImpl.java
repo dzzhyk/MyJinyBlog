@@ -2,6 +2,7 @@ package dao.Impl;
 
 import dao.JloggUserDao;
 import domain.JloggUser;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,5 +25,19 @@ public class JloggUserDaoImpl implements JloggUserDao {
             return null;
         }
         return jloggUser;
+    }
+
+    @Override
+    public boolean updateAccount(JloggUser user) {
+        boolean flag = false;
+        String sql =
+                "UPDATE blog_user SET username=?, passwd=? WHERE uid=?";
+        try {
+            template.update(sql, user.getUsername(), user.getPasswd(),user.getUid());
+            flag = true;
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return flag;
     }
 }
