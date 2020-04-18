@@ -6,7 +6,7 @@
         </div>
         <div>
             <p class="sidebar-intro">博主留言</p>
-            <p class="sidebar-intro">"行百里者半九十"</p>
+            <p id="selfdes" class="sidebar-intro">"行百里者半九十"</p>
         </div>
     </div>
     <div class="sidebar-module">
@@ -24,8 +24,21 @@
     <div class="sidebar-module">
         <h4>关于</h4>
         <ol class="list-unstyled">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">CSDN</a></li>
+            <li><a id="email" href="">Email</a></li>
+            <li><a id="github" href="">GitHub</a></li>
+            <li><a id="csdn" href="">CSDN</a></li>
         </ol>
     </div>
 </div><!-- /.blog-sidebar -->
+
+<script>
+    $(function () {
+        // 异步获取profile信息
+        $.get("servletFlushAdminProfile", null, function(data){
+            $("#selfdes").text(data.selfdes);
+            $("#email").prop("href","mailto:"+data.email);
+            $("#github").prop("href",data.github);
+            $("#csdn").prop("href",data.csdn);
+        });
+    })
+</script>

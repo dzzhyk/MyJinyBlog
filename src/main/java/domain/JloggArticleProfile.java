@@ -3,32 +3,33 @@ package domain;
 
 import java.time.LocalDate;
 
-public class JloggArticle {
+public class JloggArticleProfile {
 
-    private String id;
+    private String aid;
     private LocalDate time;
     private String title;
     private String author;
     private int views;
-    private JloggArticleContent detail;
+    private String shown;
 
-    public JloggArticle() {
+    public JloggArticleProfile() {
     }
 
-    public JloggArticle(String id, LocalDate time, String title, String author, int views) {
-        this.id = id;
+    public JloggArticleProfile(String aid, LocalDate time, String title, String author, int views, String shown) {
+        this.aid = aid;
         this.time = time;
         this.title = title;
         this.author = author;
         this.views = views;
+        this.shown = shown;
     }
 
-    public String getId() {
-        return id;
+    public String getAid() {
+        return aid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAid(String aid) {
+        this.aid = aid;
     }
 
     public LocalDate getTime() {
@@ -63,23 +64,23 @@ public class JloggArticle {
         this.views = views;
     }
 
-    public JloggArticleContent getDetail() {
-        return detail;
+    public String getShown() {
+        return shown;
     }
 
-    public void setDetail(JloggArticleContent detail) {
-        this.detail = detail;
+    public void setShown(String shown) {
+        this.shown = shown;
     }
 
     @Override
     public String toString() {
-        return "JloggArticle{" +
-                "id='" + id + '\'' +
+        return "JloggArticleProfile{" +
+                "aid='" + aid + '\'' +
                 ", time=" + time +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", views=" + views +
-                ", detail=" + detail +
+                ", shown='" + shown + '\'' +
                 '}';
     }
 }

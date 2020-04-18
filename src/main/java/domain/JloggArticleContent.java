@@ -1,25 +1,25 @@
 package domain;
 
 public class JloggArticleContent {
-    private int id;
+    private int aid;
     private String description;
-    private String content;
+    private String path;
 
     public JloggArticleContent() {
     }
 
-    public JloggArticleContent(int id, String description, String content) {
-        this.id = id;
+    public JloggArticleContent(int aid, String description, String path) {
+        this.aid = aid;
         this.description = description;
-        this.content = content;
+        this.path = path;
     }
 
-    public int getId() {
-        return id;
+    public int getAid() {
+        return aid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAid(int aid) {
+        this.aid = aid;
     }
 
     public String getDescription() {
@@ -30,11 +30,20 @@ public class JloggArticleContent {
         this.description = description;
     }
 
-    public String getContent() {
-        return content;
+    public String getPath() {
+        return path;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public String toString() {
+        return "JloggArticleContent{" +
+                "aid=" + aid +
+                ", description='" + description + '\'' +
+                ", path='" + path + '\'' +
+                '}';
     }
 }

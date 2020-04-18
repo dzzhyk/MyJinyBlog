@@ -1,28 +1,27 @@
 package domain;
 
 public class JloggUser {
+    private String uid;
     private String username;
     private String passwd;
-    private String selfdes;
-    private String email;
-    private String github;
-    private String csdn;
+    private String admin;
 
     public JloggUser() {
     }
 
-    public JloggUser(String username, String passwd) {
+    public JloggUser(String uid, String username, String passwd, String admin) {
+        this.uid = uid;
         this.username = username;
         this.passwd = passwd;
+        this.admin = admin;
     }
 
-    public JloggUser(String username, String passwd, String selfdes, String email, String github, String csdn) {
-        this.username = username;
-        this.passwd = passwd;
-        this.selfdes = selfdes;
-        this.email = email;
-        this.github = github;
-        this.csdn = csdn;
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getUsername() {
@@ -41,47 +40,21 @@ public class JloggUser {
         this.passwd = passwd;
     }
 
-    public String getSelfdes() {
-        return selfdes;
+    public String getAdmin() {
+        return admin;
     }
 
-    public void setSelfdes(String selfdes) {
-        this.selfdes = selfdes;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getGithub() {
-        return github;
-    }
-
-    public void setGithub(String github) {
-        this.github = github;
-    }
-
-    public String getCsdn() {
-        return csdn;
-    }
-
-    public void setCsdn(String csdn) {
-        this.csdn = csdn;
+    public void setAdmin(String admin) {
+        this.admin = admin;
     }
 
     @Override
     public String toString() {
         return "JloggUser{" +
-                "username='" + username + '\'' +
+                "uid='" + uid + '\'' +
+                ", username='" + username + '\'' +
                 ", passwd='" + passwd + '\'' +
-                ", selfdes='" + selfdes + '\'' +
-                ", email='" + email + '\'' +
-                ", github='" + github + '\'' +
-                ", csdn='" + csdn + '\'' +
+                ", admin='" + admin + '\'' +
                 '}';
     }
 }
