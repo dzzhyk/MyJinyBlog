@@ -11,4 +11,10 @@ public class UserProfileServiceImpl implements UserProfileService {
         JloggUserProfileDao dao = new JloggUserProfileDaoImpl();
         return dao.findAdminProfile();
     }
+
+    @Override
+    public boolean updateProfile(JloggUserProfile profile) {
+        JloggUserProfileDao dao = new JloggUserProfileDaoImpl();
+        return dao.updateProfile(profile);
+    }
 }

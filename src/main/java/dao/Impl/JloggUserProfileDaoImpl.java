@@ -3,6 +3,7 @@ package dao.Impl;
 import dao.JloggUserProfileDao;
 import domain.JloggUser;
 import domain.JloggUserProfile;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,5 +29,24 @@ public class JloggUserProfileDaoImpl implements JloggUserProfileDao {
             return null;
         }
         return jloggUserProfile;
+    }
+
+    @Override
+    public boolean updateProfile(JloggUserProfile profile) {
+        boolean flag = false;
+        String sql =
+                "UPDATE blog_user_profile SET selfdes=?, email=?, github=?, csdn=? WHERE uid=?";
+        try {
+            template.update(sql,
+                    profile.getSelfdes(),
+                    profile.getEmail(),
+                    profile.getGithub(),
+                    profile.getCsdn(),
+                    profile.getUid());
+            flag = true;
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return flag;
     }
 }
