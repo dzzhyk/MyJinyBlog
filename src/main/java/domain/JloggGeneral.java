@@ -8,6 +8,9 @@ public class JloggGeneral {
     private String htmlCopyright;
     private String beian;
 
+    public JloggGeneral() {
+    }
+
     public JloggGeneral(String title, String name, String description, String htmlDescription, String htmlCopyright, String beian) {
         this.title = title;
         this.name = name;
