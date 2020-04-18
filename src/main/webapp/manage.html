@@ -29,7 +29,6 @@
 
     <script>
         $(function(){
-
             $("body").on("mousedown", "a", function (e) {
                 e.preventDefault();
             });
@@ -43,6 +42,7 @@
                     location.reload();
                 })
             })
+            showGeneral();
         })
 
         // 异步提交general表单
@@ -53,6 +53,15 @@
                 });
             }
             return false;
+        }
+
+        // general信息回显
+        function showGeneral() {
+            $.post("servletShowGeneral", null, function(info){
+                $("#manage-general div input").each(function(){
+                    $(this).val(info[$(this).attr("name")]);
+                })
+            });
         }
     </script>
 
@@ -79,7 +88,7 @@
     <div class="row">
         <ul class="nav nav-tabs manage-main">
             <li role="presentation" class="active" data-toggle='tab'>
-                <a href="#general">General</a>
+                <a onclick="showGeneral()" href="#general">General</a>
             </li>
             <li role="presentation" data-toggle='tab'>
                 <a href="#profile">Profile</a>
@@ -118,11 +127,9 @@
                     <label for="blog-manage-general-beian">底部备案信息</label>
                     <input name="beian" type="text" class="form-control" id="blog-manage-general-beian" placeholder="">
                 </div>
-                <div class="form-group">
-                    <label for="logo">上传favicon.ico</label>
-                    <input type="file" id="logo">
-                    <p class="help-block">建议大小为 32 x 32</p>
-                </div>
+                <label for="logo">上传favicon.ico</label>
+                <input type="file" id="logo">
+                <p class="help-block">建议大小为 32 x 32</p>
                 <button onclick="submitGeneral()" type="button" class="btn btn-success">提交修改</button>
                 <button type="button" class="btn btn-danger navbar-right" id="exit">退出登录</button>
             </form>
