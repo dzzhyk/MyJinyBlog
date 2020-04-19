@@ -29,7 +29,7 @@ public class FilterLogin implements Filter {
             if (user!=null){
                 chain.doFilter(req, resp);
             }else {
-                response.sendRedirect("/login.html");
+                response.sendRedirect("./login.html");
             }
         }else {
             chain.doFilter(req, resp);

@@ -18,4 +18,12 @@ $(function () {
     $.get("article.html",function (data) {
         $("#article").html(data);
     });
+
+    // 如果没有favicon.ico加载默认favicon
+    $.ajax({
+        url: "favicon.ico",
+        error: function(){
+            $("#favicon").prop("href","favicon_d.ico");
+        }
+    })
 });
