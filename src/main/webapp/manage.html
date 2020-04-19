@@ -217,7 +217,7 @@
                 <label style="padding-left: 0" for="logo" class="col-sm-12">上传favicon.ico</label>
                 <input style="padding-left: 0;margin-right: -15px" type="file" class="col-sm-4" id="logo">
                 <button onclick="submitBtn('logo', '/', 'favicon.ico')" type="button">上传</button>
-                <p class="help-block">建议大小为 32 x 32</p>
+                <p class="help-block">建议大小为 32 x 32, 图片最大1M</p>
                 <!--图片上传 end-->
 
                 <button onclick="submitGeneral()" type="button" class="btn btn-success">提交修改</button>
@@ -256,10 +256,14 @@
                     <label for="blog-manage-account-password">Password</label>
                     <input name="passwd" type="password" class="form-control" id="blog-manage-account-password">
                 </div>
-                <label style="padding-left: 0" for="headlogo" class="col-sm-12">上传favicon.ico</label>
+
+                <!--图片上传 start-->
+                <label style="padding-left: 0" for="headlogo" class="col-sm-12">上传头像head-shot</label>
                 <input style="padding-left: 0;margin-right: -15px" type="file" class="col-sm-4" id="headlogo">
-                <button onclick="submitBtn('headlogo', '/', 'favicon.ico');" type="button">上传</button>
-                <p class="help-block">建议大小为 350 x 350</p>
+                <button onclick="submitBtn('headlogo', './img', 'headlogo.jpg')" type="button">上传</button>
+                <p class="help-block">请上传jpg/jpeg格式，建议大小为 350 x 350, 图片最大1M</p>
+                <!--图片上传 end-->
+
                 <button onclick="submitAccount()" type="button" class="btn btn-success">提交修改</button>
             </form>
         </div>
