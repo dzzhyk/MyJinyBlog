@@ -21,18 +21,21 @@
     <link href="css/sidebar.css" rel="stylesheet">
 
     <script>
+        // 全局变量记录当前已经加载的文章数量
+        var CURRENT_ARTICLE_NUMBER = 0;
+
         // 监听滚动条
         $(window).scroll(function() {
-            if ($(document).scrollTop() - $(document).height() < 100) {
+            if ($(document).scrollTop() - $(document).height() < 10) {
                 // 初始化底部加载条/*可以使用下面的两个语句来实现loading动画的显示和隐藏*/
-                // $("#sk-three-bounce").show();
-                $("#sk-three-bounce").hide();
+                $("#sk-three-bounce").show();
+                // $("#sk-three-bounce").hide();
             }else {
             }
         });
 
-        // 异步获取general信息
         $(function () {
+            // 异步获取general信息
             $.get("servletFlushGeneral", null, function(data){
                 document.title = data.title;
                 $("#name").text(data.name);
@@ -41,14 +44,13 @@
                 $("meta[name='copyright']").attr('content',data.htmlCopyright);
                 $("#beian").text(data.beian);
             });
-        })
 
+            // 异步拉取article-list
+            loadListProfile(CURRENT_ARTICLE_NUMBER, 7);
+        })
     </script>
 </head>
 <body style="overflow-x:hidden">
-    <!--引入头部-->
-<!--    <div id="header"></div>-->
-
     <header>
         <div class="blog-masthead">
             <div class="container">
@@ -71,20 +73,9 @@
         <div class="row index">
             <!--引入边栏-->
             <div id="sidebar"></div>
-            <!--引入文章列表-->
-            <div id="article-list"></div>
-
-            </div><!-- /.blog-main -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-5" id="load-area">
-                <div class="sk-three-bounce" id="sk-three-bounce">
-                    <div class="sk-child sk-bounce1"></div>
-                    <div class="sk-child sk-bounce2"></div>
-                    <div class="sk-child sk-bounce3"></div>
-                </div>
+            <div id="article-list" class="col-sm-8 col-sm-offset-1 blog-main">
+                <!-- 待加入区域 START -->
+                <!-- 待加入区域 END -->
             </div>
         </div>
     </div>

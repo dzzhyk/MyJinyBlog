@@ -29,7 +29,6 @@ I admit that the project still has very, very many shortcomings. I am still a st
 
 Of course, if you like this project, you can watch or star, thank you for your support!
 
-my contact information:
-
+Contact me by mail：
 1354839386@qq.com
 

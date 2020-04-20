@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class JloggArticleProfile {
 
-    private String aid;
+    private int aid;
     private LocalDate time;
     private String title;
     private String author;
@@ -15,7 +15,7 @@ public class JloggArticleProfile {
     public JloggArticleProfile() {
     }
 
-    public JloggArticleProfile(String aid, LocalDate time, String title, String author, int views, String shown) {
+    public JloggArticleProfile(int aid, LocalDate time, String title, String author, int views, String shown) {
         this.aid = aid;
         this.time = time;
         this.title = title;
@@ -24,11 +24,11 @@ public class JloggArticleProfile {
         this.shown = shown;
     }
 
-    public String getAid() {
+    public int getAid() {
         return aid;
     }
 
-    public void setAid(String aid) {
+    public void setAid(int aid) {
         this.aid = aid;
     }
 
@@ -75,7 +75,7 @@ public class JloggArticleProfile {
     @Override
     public String toString() {
         return "JloggArticleProfile{" +
-                "aid='" + aid + '\'' +
+                "aid=" + aid +
                 ", time=" + time +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
