@@ -11,4 +11,6 @@ public interface ArticleService {
     JloggArticleContent findContentByAid(int aid);
 
     JloggArticleProfile findProfileByAid(int aid);
+
+    List<JloggArticleProfile> flushAllProfile();
 }

@@ -108,6 +108,35 @@
             });
         }
 
+        // Article信息回显
+        function showArticle(){
+            $.post("servletFlushAllArticleProfile",null,function (info) {
+                if (info.flag){
+                    $.each(info.data, function(index, item){
+                        var aid = item.aid;
+                        var tt = item.time.year+"."+item.time.monthValue+"."+item.time.dayOfMonth;
+                        var title = item.title;
+                        var shown = "否";
+                        if (item.shown === "N"){
+                            shown = "是";
+                        }
+                        var str = "<tr>\n" +
+                            "<td>"+(index+1)+"</td>\n" +
+                            "<td>"+tt+"</td>\n" +
+                            "<td>"+shown+"</td>\n" +
+                            "<td>"+title+"</td>\n" +
+                            "<td>\n" +
+                            "<a class=\"btn btn-default btn-sm\" href=\"details.html?aid="+aid+"\">查看文章</a>&nbsp;\n" +
+                            "<a class=\"btn btn-default btn-sm\" href=\"update.html\">修改</a>&nbsp;\n" +
+                            "<a class=\"btn btn-default btn-sm\" href=\"\">删除</a>&nbsp;\n" +
+                            "</td>\n" +
+                            "</tr>";
+                        $("#article-table").append(str);
+                    });
+                }
+            })
+        }
+
         // 关联上传按钮和上传input框
         function submitBtn(id, pathname, filename){
             // 获取文件选择框
@@ -178,7 +207,7 @@
                 <a onclick="showAccount()" href="#account">Account</a>
             </li>
             <li role="presentation" data-toggle="tab">
-                <a href="#articles">Articles</a>
+                <a onclick="showArticle()" href="#articles">Articles</a>
             </li>
         </ul>
     </div>
@@ -268,131 +297,19 @@
 
         <div class="tab-pane" id="articles">
             <!--获取文章列表-->
-            <div class="container">
+            <div id="articles-div" class="container">
                 <h3 style="text-align: center">文章列表</h3>
-                <table style="text-align: center" border="2" class="table table-bordered table-hover">
+                <table id="article-table" style="text-align: center" border="2" class="table table-bordered table-hover">
                     <!--表头-->
                     <tr class="success">
-                        <th style="width: 80px">文章编号</th>
+                        <th style="width: 80px">序号</th>
                         <th style="width: 90px">创建时间</th>
-                        <th style="width: 570px">题目</th>
+                        <th style="width: 90px">是否草稿</th>
+                        <th style="width: 450px">题目</th>
                         <th>操作</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>这是一段特别长的文章题目这是一段特别长的文章题目这是</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>2020.5.1</td>
-                        <td>Cocos2d-x简介</td>
-                        <td>
-                            <a class="btn btn-default btn-sm" href="">查看文章</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
-                            <a class="btn btn-default btn-sm" href="">删除</a>&nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="8" align="center"><a class="btn btn-primary" href="write.html">写新文章</a></td>
-                    </tr>
                 </table>
+                <a class="btn btn-primary center-block" href="write.html">写新文章</a>
             </div>
         </div>
     </div>

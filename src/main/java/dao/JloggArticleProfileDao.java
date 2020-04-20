@@ -9,4 +9,6 @@ public interface JloggArticleProfileDao {
     List<JloggArticleProfile> findProfilesByLimit(int currentCount, int count);
 
     JloggArticleProfile findProfileByAid(int aid);
+
+    List<JloggArticleProfile> findAllProfiles();
 }

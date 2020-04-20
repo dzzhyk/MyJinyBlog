@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/servletFlushArticleProfile")
-public class ServletFlushArticleProfile extends HttpServlet {
+@WebServlet("/servletFlushArticleProfileByLimit")
+public class ServletFlushArticleProfileByLimit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 

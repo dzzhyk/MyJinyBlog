@@ -20,7 +20,7 @@ function loadListProfile(count) {
     // 返回数据2：{flag:false, data:null, errorMsg:"0"}
     // 异步获取articles_profile
     $.ajax({
-        url:"servletFlushArticleProfile",
+        url:"servletFlushArticleProfileByLimit",
         dataType:"json",
         data:{  "currentNumber":CURRENT_ARTICLE_NUMBER,     // 当前文章数量
             "count":count},                 // 加载文章的数量

@@ -37,4 +37,16 @@ public class JloggArticleProfileDaoImpl implements JloggArticleProfileDao {
         }
         return profile;
     }
+
+    @Override
+    public List<JloggArticleProfile> findAllProfiles() {
+        List<JloggArticleProfile> list = null;
+        String sql = "SELECT * FROM blog_articles_profile";
+        try {
+            list = template.query(sql, new BeanPropertyRowMapper<>(JloggArticleProfile.class));
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
