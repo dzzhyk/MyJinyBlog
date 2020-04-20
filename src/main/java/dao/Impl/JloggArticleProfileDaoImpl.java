@@ -49,4 +49,17 @@ public class JloggArticleProfileDaoImpl implements JloggArticleProfileDao {
         }
         return list;
     }
+
+    @Override
+    public boolean removeProfileByAid(int aid) {
+        boolean flag = false;
+        String sql = "DELETE FROM blog_articles_profile WHERE aid=?";
+        try {
+            template.update(sql, aid);
+            flag = true;
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

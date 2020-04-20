@@ -13,4 +13,6 @@ public interface ArticleService {
     JloggArticleProfile findProfileByAid(int aid);
 
     List<JloggArticleProfile> flushAllProfile();
+
+    boolean removeArticleByAid(int aid);
 }

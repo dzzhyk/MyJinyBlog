@@ -34,4 +34,10 @@ public class ArticleServiceImpl implements ArticleService {
         JloggArticleProfileDao dao = new JloggArticleProfileDaoImpl();
         return dao.findAllProfiles();
     }
+
+    @Override
+    public boolean removeArticleByAid(int aid) {
+        JloggArticleProfileDao dao = new JloggArticleProfileDaoImpl();
+        return dao.removeProfileByAid(aid);
+    }
 }

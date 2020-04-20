@@ -11,4 +11,6 @@ public interface JloggArticleProfileDao {
     JloggArticleProfile findProfileByAid(int aid);
 
     List<JloggArticleProfile> findAllProfiles();
+
+    boolean removeProfileByAid(int aid);
 }
