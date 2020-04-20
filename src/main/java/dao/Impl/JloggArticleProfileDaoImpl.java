@@ -26,5 +26,15 @@ public class JloggArticleProfileDaoImpl implements JloggArticleProfileDao {
         return list;
     }
 
-
+    @Override
+    public JloggArticleProfile findProfileByAid(int aid) {
+        JloggArticleProfile profile = null;
+        String sql = "SELECT aid,time,title,author,views,shown FROM blog_articles_profile WHERE aid=?";
+        try {
+            profile = template.queryForObject(sql, new BeanPropertyRowMapper<>(JloggArticleProfile.class), aid);
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return profile;
+    }
 }

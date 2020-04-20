@@ -12,9 +12,6 @@ $(function () {
     $.get("sidebar.html",function (data) {
         $("#sidebar").html(data);
     });
-    $.get("article.html",function (data) {
-        $("#article").html(data);
-    });
 
     // 如果没有favicon.ico加载默认favicon
     $.ajax({

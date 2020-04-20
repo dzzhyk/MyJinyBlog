@@ -22,4 +22,10 @@ public class ArticleServiceImpl implements ArticleService {
         JloggArticleContentDao dao = new JloggArticleContentDaoImpl();
         return dao.findContentByAid(aid);
     }
+
+    @Override
+    public JloggArticleProfile findProfileByAid(int aid) {
+        JloggArticleProfileDao dao = new JloggArticleProfileDaoImpl();
+        return dao.findProfileByAid(aid);
+    }
 }

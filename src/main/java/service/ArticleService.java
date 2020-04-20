@@ -9,4 +9,6 @@ public interface ArticleService {
     List<JloggArticleProfile> flushProfileByLimit(int currentCount, int count);
 
     JloggArticleContent findContentByAid(int aid);
+
+    JloggArticleProfile findProfileByAid(int aid);
 }
