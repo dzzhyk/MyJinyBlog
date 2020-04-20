@@ -78,7 +78,7 @@ function generateList(info) {
                     "                  <a href=\"details.html?aid="+aid+"\">阅读全文...</a>\n" +
                     "            </div>\n" +
                     "            <div class=\"blog-post-entry\">\n" +
-                    "                  <p>\n"+ contentInfo.data.description +"</p>\n" +
+                    "                  <p>\n&emsp;&emsp;"+contentInfo.data.description +"</p>\n" +
                     "            </div>\n" +
                     "      </div>\n" +
                     "</div>"

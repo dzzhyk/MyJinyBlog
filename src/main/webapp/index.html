@@ -43,19 +43,31 @@
             var viewH = $(window).height();  //可见高度
             var contentH = $(document).height();  //内容高度
 
-            if(scroH > 50){  //距离顶部大于50px时
+            if(scroH > 300){  //距离顶部大于300px时
 
+            }else {
+                // $("#sidebar-div").stop().animate({
+                //     marginTop: 0
+                // }, 500);
             }
             if (contentH - (scroH + viewH) <= 30){  //距离底部高度小于30px
                 // 加载3个新文章
                 loadListProfile(3);
-                sleep(1500);
+                sleep(700);
             }
             if (contentH === (scroH + viewH)) {  //滚动条滑到底部啦
 
             }
         });
 
+        // 小屏幕隐藏sitelogo
+        $(window).resize(function () {
+            if ($(window).width() <= 767){
+                $("#sitelogo").hide();
+            }else {
+                $("#sitelogo").show();
+            }
+        })
     </script>
 </head>
 <body style="overflow-x:hidden">
@@ -73,18 +85,18 @@
     </header>
 
     <div class="container">
-        <div class="blog-header">
-            <img src="img/sitelogo.jpg" class="img-responsive img-circle navbar-left center-block" alt="sitelogo" style="margin-left: -20px; margin-top: 25px; padding-right: 20px">
-            <h1 id="name" class="blog-title">Techape's Blog</h1>
-            <p id="description" style="margin-top: 20px;margin-bottom: 0; padding-bottom: 0;margin-left: 20px" class="lead blog-description">猿来如此</p>
-        </div>
-        <div class="row index">
-            <!--引入边栏-->
-            <div id="sidebar"></div>
-            <div id="article-list" class="col-sm-8 col-sm-offset-1 blog-main">
-                <!-- 待加入区域 START -->
-                <!-- 待加入区域 END -->
+<!--        <div class="row">-->
+            <div class="blog-header">
+                <img id="sitelogo" src="img/sitelogo.jpg" class="img-responsive img-circle navbar-left center-block" alt="sitelogo" style="margin-left: -20px; margin-top: 25px; padding-right: 20px">
+                <h1 id="name" class="blog-title">Techape's Blog</h1>
+                <p id="description" style="margin-top: 20px;margin-bottom: 0; padding-bottom: 0;margin-left: 20px" class="lead blog-description">猿来如此</p>
             </div>
+<!--        </div>-->
+        <div id="sidebar-div" class="">
+            <div id="sidebar"></div>
+        </div>
+        <div class="col-sm-8 col-sm-offset-1 navbar-right">
+            <div id="article-list" class=" blog-main "></div>
         </div>
     </div>
 
@@ -101,7 +113,7 @@
         </div>
         <div class="row">
             <div class="col-sm-4 col-sm-offset-5 col-xs-10" id="already-bottom">
-                <p class="sk-three-bounce">已经到底部了！</p>
+                <p style="color: #2e6da4" class="sk-three-bounce">所有文章均加载完毕</p>
             </div>
         </div>
     </div>
