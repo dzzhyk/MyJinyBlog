@@ -6,8 +6,16 @@ $(function(){
     }
 })
 
+// 休眠函数
+function sleep(d){
+    for(var t = Date.now();Date.now() - t <= d;);
+}
+
+// 全局变量记录当前已经加载的文章数量
+var CURRENT_ARTICLE_NUMBER = 0;
+
 // 在当前已经加载的文章数量基础上，动态刷新一定数量的文章列表
-function loadListProfile(CURRENT_ARTICLE_NUMBER, count) {
+function loadListProfile(count) {
     // 返回数据1：{flag:true, data:JloggArticleProfile, errorMsg:"1"}
     // 返回数据2：{flag:false, data:null, errorMsg:"0"}
     // 异步获取articles_profile
@@ -17,14 +25,22 @@ function loadListProfile(CURRENT_ARTICLE_NUMBER, count) {
         data:{  "currentNumber":CURRENT_ARTICLE_NUMBER,     // 当前文章数量
             "count":count},                 // 加载文章的数量
         success:function(info){
-            // 一旦成功，根据article_profile中的aid异步获取description
-            // 同时动态生成列表
-            // 返回数据1:{flag:true, data:JloggArticleContent, errorMsg:"1"}
-            // 返回数据2：{flag:false, data:null, errorMsg:"0"}
-            generateList(info);
-
-            // 更新CURRENT_ARTICLE_NUMBER
-            CURRENT_ARTICLE_NUMBER += count;
+            if (info.data != null){
+                // 显示加载条
+                $("#sk-three-bounce").show();
+                $("#already-bottom").hide();
+                // 一旦成功，根据article_profile中的aid异步获取description
+                // 同时动态生成列表
+                // 返回数据1:{flag:true, data:JloggArticleContent, errorMsg:"1"}
+                // 返回数据2：{flag:false, data:null, errorMsg:"0"}
+                generateList(info);
+                // 更新CURRENT_ARTICLE_NUMBER
+                CURRENT_ARTICLE_NUMBER += count;
+            }else {
+                // 如果失败，info.data==null，隐藏加载条
+                $("#sk-three-bounce").hide();
+                $("#already-bottom").show();
+            }
         },
         error:function(info){
             // 展示404页面 - 待定

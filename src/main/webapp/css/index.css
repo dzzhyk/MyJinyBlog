@@ -253,3 +253,9 @@ h6, .h6 {
         transform: scale(1);
     }
 }
+
+#already-bottom{
+    margin-top: -90px;
+    padding-left: 350px;
+    padding-bottom: 60px;
+}

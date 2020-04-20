@@ -12,9 +12,6 @@ $(function () {
     $.get("sidebar.html",function (data) {
         $("#sidebar").html(data);
     });
-    // $.get("article-list.html",function (data) {
-    //     $("#article-list").html(data);
-    // });
     $.get("article.html",function (data) {
         $("#article").html(data);
     });
