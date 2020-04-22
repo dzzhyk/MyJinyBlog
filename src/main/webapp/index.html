@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
-    <meta name="copyright" content="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
-    <meta name="description" content="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
+    <meta name="Copyright" content="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
+    <meta name="Description" content="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
     <title>Techape博客</title>
     <link id="favicon" rel="icon" href="favicon.ico">
     <!-- Bootstrap -->
@@ -26,9 +26,8 @@
             $.get("servletFlushGeneral", null, function(data){
                 document.title = data.title;
                 $("#name").text(data.name);
-                $("#description").text(data.description);
-                $("meta[name='description']").attr('content',data.htmlDescription);
-                $("meta[name='copyright']").attr('content',data.htmlCopyright);
+                $('meta[name="Description"]').prop('content',data.htmlDescription);
+                $('meta[name="Copyright"]').prop('content',data.htmlCopyright);
                 $("#beian").text(data.beian);
             });
 
