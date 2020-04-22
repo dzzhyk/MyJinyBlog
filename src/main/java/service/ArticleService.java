@@ -19,4 +19,5 @@ public interface ArticleService {
 
     List<JloggTimeBar> flushArchives();
 
+    List<JloggArticleProfile> flushProfileByArchive(int year, int month, int currentCount, int count);
 }

@@ -49,4 +49,10 @@ public class ArticleServiceImpl implements ArticleService {
         JloggTimeBarDao dao = new JloggTimeBarDaoImpl();
         return dao.findYearAndMonthList();
     }
+
+    @Override
+    public List<JloggArticleProfile> flushProfileByArchive(int year, int month,int currentCount, int count) {
+        JloggArticleProfileDao dao = new JloggArticleProfileDaoImpl();
+        return dao.removeProfileByArchive(year, month, currentCount, count);
+    }
 }

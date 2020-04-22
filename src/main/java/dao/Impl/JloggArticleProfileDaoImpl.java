@@ -1,7 +1,6 @@
 package dao.Impl;
 
 import dao.JloggArticleProfileDao;
-import domain.JloggArticleContent;
 import domain.JloggArticleProfile;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -61,5 +60,18 @@ public class JloggArticleProfileDaoImpl implements JloggArticleProfileDao {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    @Override
+    public List<JloggArticleProfile> removeProfileByArchive(int year, int month, int currentCount, int count) {
+        List<JloggArticleProfile> list = null;
+        String sql =
+                "SELECT aid,time,title,author,views,shown FROM blog_articles_profile WHERE YEAR(time)=? AND MONTH(time)=? Limit ?, ?";
+        try {
+            list = template.query(sql, new BeanPropertyRowMapper<>(JloggArticleProfile.class), year, month, currentCount, count);
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return list;
     }
 }

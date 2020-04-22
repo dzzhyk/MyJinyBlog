@@ -13,4 +13,6 @@ public interface JloggArticleProfileDao {
     List<JloggArticleProfile> findAllProfiles();
 
     boolean removeProfileByAid(int aid);
+
+    List<JloggArticleProfile> removeProfileByArchive(int year, int month, int currentCount, int count);
 }

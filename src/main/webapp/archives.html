@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
+    <meta name="copyright" content="Copyright © 2019-2020 techape www.techape.fun All Rights Reserved.">
+    <meta name="description" content="techape个人技术博客 由techape制作并运营 techape热衷于学习与分享技术知识">
+    <title>Techape博客</title>
+    <link id="favicon" rel="icon" href="favicon.ico">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--引入include的js文件-->
+    <script src="js/ready.js"></script>
+    <script src="js/include.js"></script>
+    <!--引入自定义css-->
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+
+    <style>
+        .blog-post-back {
+            margin-bottom: 2px;
+            margin-left: 25px;
+            border-radius: 0;
+            border-bottom: #7f7f7f 1px solid;
+            border-top: #7f7f7f 1px solid;
+        }
+        .blog-post-entry{
+            margin-bottom: 0;
+        }
+        .blog-footer {
+            margin-top: 50px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            // 异步获取general信息
+            $.get("servletFlushGeneral", null, function(data){
+                document.title = data.title;
+                $("#name").text(data.name);
+                $("meta[name='description']").attr('content',data.htmlDescription);
+                $("meta[name='copyright']").attr('content',data.htmlCopyright);
+                $("#beian").text(data.beian);
+            });
+
+            var year = getURLParameter("year");
+            var month = getURLParameter("month");
+
+            // 监听滚动条
+            $(window).scroll(function() {
+                var scroH = $(document).scrollTop();  //滚动高度
+                var viewH = $(window).height();  //可见高度
+                var contentH = $(document).height();  //内容高度
+                if (contentH - (scroH + viewH) <= 30){  //距离底部高度小于30px
+                    // 加载3个新文章
+                    loadListProfileByArchive(year, month, 3);
+                    sleep(700);
+                }
+            });
+            // 异步拉取article-list
+            loadListProfileByArchive(year, month, 5);
+        })
+    </script>
+
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <div class="row">
+            <div class="blog-header">
+                <h1 id="name" class="blog-title">Techape's Blog</h1>
+            </div>
+            <div id="sidebar-div">
+                <div id="sidebar"></div>
+            </div>
+            <div class="col-sm-9 navbar-right">
+                <div id="article-list" class="blog-main" style="margin-top: 25px"></div>
+            </div>
+        </div>
+    </div>
+    <!--底部加载条 START-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-5 col-xs-10" id="load-area">
+                <div class="sk-three-bounce" id="sk-three-bounce">
+                    <div class="sk-child sk-bounce1"></div>
+                    <div class="sk-child sk-bounce2"></div>
+                    <div class="sk-child sk-bounce3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-6 col-xs-10 sk-three-bounce"></div>
+        </div>
+    </div>
+    <!--底部加载条 END-->
+    <div id="footer"></div>
+</body>
+</html>
