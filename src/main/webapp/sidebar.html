@@ -11,14 +11,7 @@
     </div>
     <div class="sidebar-module">
         <h4>归档</h4>
-        <ol class="list-unstyled sidebar-archive">
-            <li>
-                <a href="#">2020年5月 (10)</a>
-            </li>
-            <li><a href="#">2020年4月 (10)</a></li>
-            <li><a href="#">2020年3月 (10)</a></li>
-            <li><a href="#">2020年2月 (10)</a></li>
-            <li><a href="#">2020年1月 (10)</a></li>
+        <ol id="archive" class="list-unstyled sidebar-archive">
         </ol>
     </div>
     <div class="sidebar-module">
@@ -42,12 +35,31 @@
         })
 
         // 异步获取profile信息
-        $.get("servletFlushAdminProfile", null, function(data){
+        $.post("servletFlushAdminProfile", null, function(data){
             $("#selfdes").text(data.selfdes);
             $("#email").prop("href","mailto:"+data.email);
             $("#github").prop("href",data.github);
             $("#csdn").prop("href",data.csdn);
         });
+
+        // 异步获取archive信息
+        $.ajax({
+            url:"servletFlushArchives",
+            dataType:"json",
+            method:"POST",
+            success:function(info){
+                $.each(info.data, function (index, item) {
+                    var year = item.year;
+                    var month = item.month;
+                    var count = item.count;
+                    var str = "<li><a href=\"#\">"+year+"年"+month+"月 ("+count+")</a></li>";
+                    $("#archive").append(str);
+                })
+            },
+            error:function () {
+
+            }
+        })
     })
 </script>
 

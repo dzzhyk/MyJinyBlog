@@ -2,10 +2,13 @@ package service.Impl;
 
 import dao.Impl.JloggArticleContentDaoImpl;
 import dao.Impl.JloggArticleProfileDaoImpl;
+import dao.Impl.JloggTimeBarDaoImpl;
 import dao.JloggArticleContentDao;
 import dao.JloggArticleProfileDao;
+import dao.JloggTimeBarDao;
 import domain.JloggArticleContent;
 import domain.JloggArticleProfile;
+import domain.JloggTimeBar;
 import service.ArticleService;
 
 import java.util.List;
@@ -39,5 +42,11 @@ public class ArticleServiceImpl implements ArticleService {
     public boolean removeArticleByAid(int aid) {
         JloggArticleProfileDao dao = new JloggArticleProfileDaoImpl();
         return dao.removeProfileByAid(aid);
+    }
+
+    @Override
+    public List<JloggTimeBar> flushArchives() {
+        JloggTimeBarDao dao = new JloggTimeBarDaoImpl();
+        return dao.findYearAndMonthList();
     }
 }

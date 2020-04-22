@@ -2,6 +2,7 @@ package service;
 
 import domain.JloggArticleContent;
 import domain.JloggArticleProfile;
+import domain.JloggTimeBar;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ public interface ArticleService {
     List<JloggArticleProfile> flushAllProfile();
 
     boolean removeArticleByAid(int aid);
+
+    List<JloggTimeBar> flushArchives();
+
 }
