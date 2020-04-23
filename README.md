@@ -1,5 +1,3 @@
-[TOC]
-
 # MyJinyBlog
 
 MyJinyBlog is a personal blog platform based on JavaWeb technology. The entire project is completely open source, so you can download and research it as you like. This project is also one of my practical projects to learn JavaEE technology, so if I have a better way of implementation, I will keep updating this project.
