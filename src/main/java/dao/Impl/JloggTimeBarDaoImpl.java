@@ -20,10 +20,10 @@ public class JloggTimeBarDaoImpl implements JloggTimeBarDao {
             String sql1 = "SELECT DISTINCT YEAR(time) AS year, MONTH(time) AS month FROM blog_articles_profile ORDER BY year DESC, month DESC";
             list = template.query(sql1, new BeanPropertyRowMapper<>(JloggTimeBar.class));
 
-            String sql2 = "SELECT COUNT(*) FROM blog_articles_profile WHERE YEAR(time)=? AND MONTH(time)=?";
+            String sql2 = "SELECT COUNT(*) FROM blog_articles_profile WHERE YEAR(time)=? AND MONTH(time)=? AND shown=?";
             Integer temp = 0;
             for (int i = 0; i < list.size(); i++) {
-                temp = template.queryForObject(sql2, Integer.class, list.get(i).getYear(), list.get(i).getMonth());
+                temp = template.queryForObject(sql2, Integer.class, list.get(i).getYear(), list.get(i).getMonth(),"Y");
                 list.get(i).setCount(temp.intValue());
             }
         }catch (DataAccessException | NullPointerException e){

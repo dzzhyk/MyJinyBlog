@@ -18,49 +18,19 @@
     <script src="js/utils.js"></script>
     <!--引入write.css-->
     <link href="css/write.css" rel="stylesheet">
-    <!--引入showdown.js-->
-    <script type="text/javascript" src="js/showdown.min.js"></script>
-    <script src="js/showdown.min.js"></script>
 
     <script>
-        //textarea支持tab缩进
-        function tab(e){
-            if (event.keyCode === 9) {
-                event.preventDefault();
-                var indent = '    ';
-                var start = e.selectionStart;
-                var end = e.selectionEnd;
-                var selected = window.getSelection().toString();
-                selected = indent + selected.replace(/\n/g, '\n' + indent);
-                e.value = e.value.substring(0, start) + selected + e.value.substring(end);
-                this.setSelectionRange(start + indent.length, start
-                    + selected.length);
-                event.returnValue = false;
-            }
-        }
-
-        // 预览函数
-        var converter = new showdown.Converter();
-        function convert(){
-            text = $('.input-area').val();
-            var html = converter.makeHtml(text);
-            $('.preview-body').html(html);
-        }
-
-        // 设置提示语
-        var notify = "注：仅支持部分MarkDown语法";
+        // // 设置提示语
         $(function(){
-           $('#text').prop("placeholder", notify);
-        });
-
-        // 检查题目
-        function checkLength(bar){
-            if (DataLength($(bar).val()) > 70){
-                $(bar).addClass("title-overflow");
-            }else {
-                $(bar).removeClass("title-overflow");
+            var notify = "注：仅支持部分MarkDown语法";
+            $('#text').prop("placeholder", notify);
+            var aid = getURLParameter("aid");
+            if (aid!=null){
+                // 回显文章内容
+                flushArticleProfile(addTitleToWriteTitle);
+                loadContent(addTextToTextarea);
             }
-        }
+        });
     </script>
     <!--隐藏滑动条-->
     <style>
@@ -72,13 +42,11 @@
     </style>
 </head>
 <body  style="overflow-x:hidden;">
-<!--<div id="header"></div>-->
 <header>
     <div class="blog-masthead">
         <div class="container">
             <nav class="blog-nav navbar-left">
                 <a id="index" class="blog-nav-item" href="index.html">首页</a>
-<!--                <a id="write" class="blog-nav-item active" href="write.html">写文章</a>-->
             </nav>
             <nav class="navbar-right">
                 <a id="manage" class="blog-nav-item" href="manage.html">管理登录</a>
@@ -91,19 +59,16 @@
 <div class="col-sm-2 title title-text pull-left">文章题目：</div>
 <div class="col-sm-8 title title-bar" id="title">
     <div class="input-group" style="vertical-align: center">
-        <input type="text" class="form-control input-title-area" onblur="checkLength(this)" aria-label="...">
+        <input id="write-title" type="text" class="form-control input-title-area" onblur="checkLength(this)" aria-label="...">
         <div class="input-group-btn" style="vertical-align: center">
             <button style="font-size: 14px; padding-top: 8px" type="button" class="btn btn-default dropdown-toggle input-title-area" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">提交</button>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#">保存并提交</a></li>
-                <li><a href="#">保存草稿</a></li>
-<!--                <li role="separator" class="divider"></li>-->
-<!--                <li><a href="#">Separated link</a></li>-->
+                <li><a onclick="submitText('Y')" href="javascript:;">发布文章</a></li>
+                <li><a onclick="submitText('N')" href="javascript:;">保存为草稿</a></li>
             </ul>
         </div><!-- /btn-group -->
     </div><!-- /input-group -->
 </div>
-<!--<div class="col-sm-2 title title-hint pull-right" style="color: red;">Over 70 characters!</div>-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 col-xs-12 write">

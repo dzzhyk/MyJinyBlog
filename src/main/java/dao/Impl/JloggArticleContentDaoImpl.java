@@ -22,4 +22,30 @@ public class JloggArticleContentDaoImpl implements JloggArticleContentDao {
         }
         return content;
     }
+
+    @Override
+    public boolean createContent(int aid, String description, String path) {
+        boolean flag = false;
+        try {
+            String sql = "INSERT INTO blog_articles_content VALUES (?,?,?)";
+            template.update(sql, aid, description, path);
+            flag = true;
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean updateContent(int aid, String description, String path) {
+        boolean flag = false;
+        try {
+            String sql = "UPDATE blog_articles_content SET description=?, path=? WHERE aid=?";
+            template.update(sql, description, path, aid);
+            flag = true;
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

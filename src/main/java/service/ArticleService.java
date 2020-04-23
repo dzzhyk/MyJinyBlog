@@ -20,4 +20,12 @@ public interface ArticleService {
     List<JloggTimeBar> flushArchives();
 
     List<JloggArticleProfile> flushProfileByArchive(int year, int month, int currentCount, int count);
+
+    int createArticleProfile(String title, String username, String shown);
+
+    boolean createArticleContent(int aid, String description,String path);
+
+    int updateArticleProfile(int aid, String title, String username, String shown);
+
+    boolean updateArticleContent(int aid, String description, String path);
 }

@@ -1,3 +1,6 @@
+<!--引入showdown.js-->
+document.write("<script type='text/javascript' src='js/showdown.min.js'></script>");
+
 $(function(){
     // 改变小白三角的位置
     var id = window.location.pathname.split('/')[1].slice(0, length-5);
@@ -11,7 +14,6 @@ $(function(){
 function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
-
 
 
 // 休眠函数
@@ -139,5 +141,160 @@ function generateList(info) {
             }
         })
     })
+}
+
+var COULD_SUBMIT = true;
+
+// 检查目标长度
+function checkLength(bar){
+    if (DataLength($(bar).val()) > 50){
+        $(bar).addClass("title-overflow");
+        COULD_SUBMIT = false;
+    }else {
+        $(bar).removeClass("title-overflow");
+        COULD_SUBMIT = true;
+    }
+}
+
+function submitText(shown) {
+    if (COULD_SUBMIT){
+        if (confirm("确定要提交吗？")){
+            var formData = new FormData();
+            formData.append("title", $("#write-title").val());
+            formData.append("text", $("#text").val());
+            formData.append("shown", shown);
+
+            var aid = getURLParameter("aid");
+            if (aid!=null){
+                formData.append("aid",aid);
+            }
+
+            $.ajax({
+                url:"servletAddNewArticle",
+                method:"POST",
+                data:formData,
+                dataType:"json",
+                processData:false,
+                contentType: false,
+                success:function (info) {
+                    alert(info.errorMsg);
+                },
+                error:function () {
+                    alert("提交失败！");
+                }
+            })
+        }
+    }else {
+        alert("无法提交，请检查！");
+    }
+}
+
+//textarea支持tab缩进
+function tab(e){
+    if (event.keyCode === 9) {
+        event.preventDefault();
+        var indent = '    ';
+        var start = e.selectionStart;
+        var end = e.selectionEnd;
+        var selected = window.getSelection().toString();
+        selected = indent + selected.replace(/\n/g, '\n' + indent);
+        e.value = e.value.substring(0, start) + selected + e.value.substring(end);
+        this.setSelectionRange(start + indent.length, start
+            + selected.length);
+        event.returnValue = false;
+    }
+}
+
+// 预览函数
+function convert(){
+    var converter = new showdown.Converter();
+    text = $('.input-area').val();
+    var html = converter.makeHtml(text);
+    $('.preview-body').html(html);
+}
+
+
+// 刷新details页面的文章题目日期时间信息
+function flushDetailProfile(info) {
+    $("#article-title").text(info.data.title);
+    var year = info.data.time.year;
+    var month = info.data.time.monthValue;
+    var day = info.data.time.dayOfMonth;
+    var timeh = "<p id=\"article-time\" class=\"text-center\">"+year+"年"+month+"月"+day+"日</p>";
+    $("#article-time").html(timeh);
+}
+
+// 根据文章id获取Profile，参数是操作函数
+function flushArticleProfile(func) {
+    var aid = getURLParameter("aid");
+    if (aid!=null){
+        $.ajax({
+            url:"servletFlushArticleProfileByAid",
+            method: "POST",
+            data:{"aid":aid},
+            success:function (info) {
+                if (info.flag === true){
+                    func(info);
+                }
+            }
+        })
+    }
+}
+
+
+// 将题目添加到title-area
+function addTitleToWriteTitle(info) {
+    $("#write-title").val(info.data.title);
+}
+
+// 将文本添加到textarea
+function addTextToTextarea(data) {
+    $("#text").val(data);
+    convert();
+}
+
+// 将details中的文本转换为html
+function convertTextToHtml(data) {
+    // var result = decodeURIComponent(data);
+    var converter = new showdown.Converter();
+    var html = converter.makeHtml(data);
+    $('#article-body').html(html);
+}
+
+
+// 如果有参数传递，加载文章文字内容
+function loadContent(func) {
+    var aid = getURLParameter("aid");
+    if (aid != null){
+        $.ajax({
+            url:"servletFlushArticleContent",
+            method:"POST",
+            data:{"aid": aid},
+            success:function (info) {
+                if (info.flag===true){
+                    // 获取文章成功
+                    // 根据info中的path信息找到文件
+                    var tempPath = info.data.path + "/" + info.data.aid;
+                    $.ajax({
+                        url:tempPath,
+                        dataType:"text",
+                        success:function(data){
+                            func(data); // 调用参数函数
+                        },
+                        error:function () {
+                            // 404
+                            alert("加载文章失败！");
+                        }
+                    })
+                }else {
+                    // 404
+                    alert("加载文章失败！");
+                }
+            },
+            error:function(){
+                alert("加载文章失败!");
+            }
+        })
+    }
 }
 

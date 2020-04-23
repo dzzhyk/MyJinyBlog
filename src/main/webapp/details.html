@@ -12,10 +12,6 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
-    <!--引入showdown.js-->
-    <script type="text/javascript" src="js/showdown.min.js"></script>
-    <script src="js/showdown.min.js"></script>
-    <script src="js/showdown-table.min.js"></script>
     <!--引入css-->
     <link href="css/index.css" rel="stylesheet">
     <link href="css/details.css" rel="stylesheet">
@@ -31,52 +27,8 @@
     </style>
     <script>
         $(function () {
-            var aid = getURLParameter("aid");
-            $.ajax({
-                url:"servletFlushArticleProfileByAid",
-                method: "POST",
-                data:{"aid":aid},
-                success:function (info) {
-                    if (info.flag === true){
-                        $("#article-title").text(info.data.title);
-                        var year = info.data.time.year;
-                        var month = info.data.time.monthValue;
-                        var day = info.data.time.dayOfMonth;
-                        var timeh = "<p id=\"article-time\" class=\"text-center\">"+year+"年"+month+"月"+day+"日</p>";
-                        $("#article-time").html(timeh);
-                    }
-                }
-            })
-
-            $.ajax({
-                url:"servletFlushArticleContent",
-                method:"POST",
-                data:{"aid": aid},
-                success:function (info) {
-                    if (info.flag===true){
-                        // 获取文章成功
-                        // 根据info中的path信息找到文件
-                        var tempPath = info.data.path + "/" + info.data.aid;
-                        $.ajax({
-                            url:tempPath,
-                            dataType:"text",
-                            success:function(data){
-                                var converter = new showdown.Converter();
-                                var html = converter.makeHtml(data);
-                                $('#article-body').html(html);
-                            },
-                            error:function () {
-                                // 404
-                            }
-                        })
-                    }else {
-                        // 404
-                    }
-                },
-                error:function(){
-                    alert("未知错误")
-                }
-            })
+            flushArticleProfile(flushDetailProfile);
+            loadContent(convertTextToHtml);
         })
     </script>
 </head>
@@ -87,7 +39,7 @@
             <div id="sidebar"></div>
             <div class="col-sm-8 col-sm-offset-1">
                 <div class="page-header article-header">
-                    <h1 id="article-title"></h1>
+                    <h1 style="font-size: 28px" id="article-title"></h1>
                 </div>
                 <p id="article-time" class="text-center"></p>
                 <div id="article-body"></div>
