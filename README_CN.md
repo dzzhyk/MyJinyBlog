@@ -1,5 +1,3 @@
-[TOC]
-
 # MyJinyBlog
 
 MyJinyBlog是一个基于JavaWeb技术的个人博客平台，整个项目是完全开源的，所以你可以任意下载并且研究使用。
