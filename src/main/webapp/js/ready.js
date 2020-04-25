@@ -283,18 +283,55 @@ function loadContent(func) {
                         },
                         error:function () {
                             // 404
-                            alert("加载文章失败！");
+                            // alert("加载文章失败！");
                         }
                     })
                 }else {
                     // 404
-                    alert("加载文章失败！");
+                    // alert("加载文章失败！");
                 }
             },
             error:function(){
-                alert("加载文章失败!");
+                // alert("加载文章失败!");
             }
         })
     }
 }
 
+// 响应式小屏幕适配
+function transformForPhone() {
+    var $sitelogo = $("#sitelogo");
+    var $manage = $("#manage");
+    if ($(window).width() <= 770){
+        // 隐藏站点logo
+        $sitelogo.hide();
+        // 隐藏管理登录
+        $manage.hide();
+        // archive页面隐藏前置信息
+    }else {
+        $sitelogo.show();
+        $manage.show();
+    }
+}
+
+$(window).resize(transformForPhone);
+
+// 监听滚动条
+function addScrollEvent(func1, func2, func3, func4){
+    $(window).scroll(function (){
+        var scroH = $(document).scrollTop();  //滚动高度
+        var viewH = $(window).height();  //可见高度
+        var contentH = $(document).height();  //内容高度
+        if(scroH > 300){  //距离顶部大于300px时
+            func1();
+        }else {
+            func2();
+        }
+        if (contentH - (scroH + viewH) <= 30){  //距离底部高度小于30px
+            func3();
+        }
+        if (contentH === (scroH + viewH)) {  //滚动条滑到底部啦
+            func4();
+        }
+    });
+}

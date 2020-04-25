@@ -20,24 +20,9 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/sidebar.css" rel="stylesheet">
 
-    <style>
-        .blog-post-back {
-            margin-bottom: 2px;
-            margin-left: 25px;
-            border-radius: 0;
-            border-bottom: #7f7f7f 1px solid;
-            border-top: #7f7f7f 1px solid;
-        }
-        .blog-post-entry{
-            margin-bottom: 0;
-        }
-        .blog-footer {
-            margin-top: 50px;
-        }
-    </style>
-
     <script>
         $(function () {
+
             // 异步获取general信息
             $.get("servletFlushGeneral", null, function(data){
                 document.title = data.title;
@@ -58,11 +43,14 @@
                 if (contentH - (scroH + viewH) <= 30){  //距离底部高度小于30px
                     // 加载3个新文章
                     loadListProfileByArchive(year, month, 3);
-                    sleep(700);
+                    sleep(1000);
                 }
             });
             // 异步拉取article-list
             loadListProfileByArchive(year, month, 5);
+
+            // 刷新页面archive标题
+            $("#description").text(year+"年"+month+"月");
         })
     </script>
 
@@ -72,13 +60,13 @@
     <div class="container">
         <div class="row">
             <div class="blog-header">
-                <h1 id="name" class="blog-title">Techape's Blog</h1>
+                <p id="description" style="margin-top: 20px;margin-bottom: 0; padding-bottom: 0;margin-left: 20px" class="lead blog-description"></p>
             </div>
             <div id="sidebar-div">
                 <div id="sidebar"></div>
             </div>
-            <div class="col-sm-9 navbar-right">
-                <div id="article-list" class="blog-main" style="margin-top: 25px"></div>
+            <div class="col-sm-8 col-sm-offset-1 navbar-right">
+                <div id="article-list" class=" blog-main "></div>
             </div>
         </div>
     </div>
@@ -94,7 +82,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-6 col-xs-10 sk-three-bounce"></div>
+            <div class="col-sm-4 col-sm-offset-5 col-xs-6" id="already-bottom">
+                <p style="color: #2e6da4;margin-top: 25px" class="sk-three-bounce">所有文章均加载完毕</p>
+            </div>
         </div>
     </div>
     <!--底部加载条 END-->

@@ -29,6 +29,13 @@
         $(function () {
             flushArticleProfile(flushDetailProfile);
             loadContent(convertTextToHtml);
+            transformForPhone();
+            // 适配手机
+            if ($(window).width() <= 770){
+                $("#sidebar").hide();
+            }else {
+                $("#sidebar").show();
+            }
         })
     </script>
 </head>

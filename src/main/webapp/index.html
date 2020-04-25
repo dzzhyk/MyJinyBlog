@@ -30,43 +30,19 @@
                 $('meta[name="Copyright"]').prop('content',data.htmlCopyright);
                 $("#beian").text(data.beian);
             });
-
             // 异步拉取article-list
             loadListProfile(5);
+            // 小屏幕适配
+            transformForPhone();
         })
 
-        // 监听滚动条
-        $(window).scroll(function() {
+        // 加载3个新文章
+        function scroll(){
+            loadListProfile(3);
+            sleep(1000);
+        }
+        addScrollEvent(()=>{}, ()=>{}, scroll, ()=>{});
 
-            var scroH = $(document).scrollTop();  //滚动高度
-            var viewH = $(window).height();  //可见高度
-            var contentH = $(document).height();  //内容高度
-
-            if(scroH > 300){  //距离顶部大于300px时
-
-            }else {
-                // $("#sidebar-div").stop().animate({
-                //     marginTop: 0
-                // }, 500);
-            }
-            if (contentH - (scroH + viewH) <= 30){  //距离底部高度小于30px
-                // 加载3个新文章
-                loadListProfile(3);
-                sleep(700);
-            }
-            if (contentH === (scroH + viewH)) {  //滚动条滑到底部啦
-
-            }
-        });
-
-        // 小屏幕隐藏sitelogo
-        $(window).resize(function () {
-            if ($(window).width() <= 767){
-                $("#sitelogo").hide();
-            }else {
-                $("#sitelogo").show();
-            }
-        })
     </script>
 </head>
 <body style="overflow-x:hidden">
@@ -109,7 +85,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-5 col-xs-10" id="already-bottom">
+            <div class="col-sm-4 col-sm-offset-5 col-xs-6" id="already-bottom">
                 <p style="color: #2e6da4" class="sk-three-bounce">所有文章均加载完毕</p>
             </div>
         </div>

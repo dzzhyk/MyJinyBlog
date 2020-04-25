@@ -3,6 +3,10 @@ $(function () {
     $("body").on("mousedown", "a", function (e) {
         e.preventDefault();
     });
+    // 禁止拖动img
+    $('img').on('mousedown',function (e) {
+        e.preventDefault()
+    })
     $.get("header.html",function (data) {
         $("#header").html(data);
     });
