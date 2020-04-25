@@ -14,7 +14,7 @@ public class ServletExit extends HttpServlet {
         request.getSession().removeAttribute("user");
         // 跳转到index
         try {
-            response.sendRedirect("/index.html");
+            response.sendRedirect("./index.html");
         } catch (IOException e) {
             e.printStackTrace();
         }
