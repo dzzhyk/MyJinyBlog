@@ -335,3 +335,19 @@ function addScrollEvent(func1, func2, func3, func4){
         }
     });
 }
+
+function addOneView() {
+    var aid = getURLParameter("aid");
+    $.ajax({
+        url:"servletAddOneView",
+        dataType:"json",
+        method:"POST",
+        data:{"aid":aid},
+        success:function () {
+
+        },
+        error:function () {
+
+        }
+    })
+}

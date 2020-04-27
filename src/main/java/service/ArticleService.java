@@ -28,4 +28,6 @@ public interface ArticleService {
     int updateArticleProfile(int aid, String title, String username, String shown);
 
     boolean updateArticleContent(int aid, String description, String path);
+
+    void addOneView(int aid);
 }

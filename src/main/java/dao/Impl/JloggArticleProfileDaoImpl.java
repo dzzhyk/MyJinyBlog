@@ -141,4 +141,15 @@ public class JloggArticleProfileDaoImpl implements JloggArticleProfileDao {
         }
         return 0;
     }
+
+    @Override
+    public void addOneView(int aid) {
+        try {
+            String sql = "UPDATE blog_articles_profile SET views=? WHERE aid=?";
+            int views = findViewsByAid(aid);
+            template.update(sql, views+1, aid);
+        }catch (DataAccessException e){
+            e.printStackTrace();
+        }
+    }
 }

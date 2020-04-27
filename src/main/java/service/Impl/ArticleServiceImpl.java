@@ -78,4 +78,10 @@ public class ArticleServiceImpl implements ArticleService {
         JloggArticleContentDao dao = new JloggArticleContentDaoImpl();
         return dao.updateContent(aid, description, path);
     }
+
+    @Override
+    public void addOneView(int aid) {
+        JloggArticleProfileDao dao = new JloggArticleProfileDaoImpl();
+        dao.addOneView(aid);
+    }
 }

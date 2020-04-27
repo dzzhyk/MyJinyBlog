@@ -1,6 +1,5 @@
 package dao;
 
-import domain.JloggArticleContent;
 import domain.JloggArticleProfile;
 
 import java.util.List;
@@ -23,4 +22,6 @@ public interface JloggArticleProfileDao {
     int updateProfile(int aid, String title, String username, String shown);
 
     int findViewsByAid(int aid);
+
+    void addOneView(int aid);
 }
